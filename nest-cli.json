@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/birr-core-server/src",
+  "defaultLibraryPrefix": "@birr",
+  "root": "apps/birr-core-server",
+  "monorepo": true,
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/birr-core-server/tsconfig.app.json"
+  },
+  "projects": {
+    "birr-core-server": {
+      "type": "application",
+      "root": "apps/birr-core-server",
+      "entryFile": "main",
+      "sourceRoot": "apps/birr-core-server/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/birr-core-server/tsconfig.app.json"
+      }
+    },
+    "birr-notifications": {
+      "type": "application",
+      "root": "apps/birr-notifications",
+      "entryFile": "main",
+      "sourceRoot": "apps/birr-notifications/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/birr-notifications/tsconfig.app.json"
+      }
+    },
+    "birr-scheduler": {
+      "type": "application",
+      "root": "apps/birr-scheduler",
+      "entryFile": "main",
+      "sourceRoot": "apps/birr-scheduler/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/birr-scheduler/tsconfig.app.json"
+      }
+    },
+    "birr-assistant": {
+      "type": "application",
+      "root": "apps/birr-assistant",
+      "entryFile": "main",
+      "sourceRoot": "apps/birr-assistant/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/birr-assistant/tsconfig.app.json"
+      }
+    },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "logger": {
+      "type": "library",
+      "root": "libs/logger",
+      "entryFile": "index",
+      "sourceRoot": "libs/logger/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/logger/tsconfig.lib.json"
+      }
+    }
+  }
+}

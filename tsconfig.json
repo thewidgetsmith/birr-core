@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": false,
+    "incremental": true,
+    "module": "commonjs",
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strictBindCallApply": false,
+    "strictNullChecks": false,
+    "target": "ES2021",
+    "paths": {
+      "@birr/common": [
+        "libs/common/src"
+      ],
+      "@birr/common/*": [
+        "libs/common/src/*"
+      ],
+      "@birr/logger": [
+        "libs/logger/src"
+      ],
+      "@birr/logger/*": [
+        "libs/logger/src/*"
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+###############################################################################
+# Docker Compose Stack Configuration for Local Development Resources
+#
+# Services:
+#   - MongoDB: document database
+#   - PostgreSQL: relational database
+#   - Redis: queue message broker
+#   - BullMonitor: queue message monitor
+###############################################################################
+
+services:
+  # Database Services
+
+  mongo:
+    container_name: birr-core-mongo
+    restart: unless-stopped
+    image: mongo
+    ports:
+    - '27017:27017'
+    volumes:
+    - 'birr-core-vol-mongo:/data/db'
+
+  postgres:
+    container_name: birr-core-pgdata
+    restart: unless-stopped
+    image: postgres
+    ports:
+    - '5432:5432'
+    environment:
+      POSTGRES_USER: birrcore
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: birrcore
+    volumes:
+    - 'birr-core-vol-pgdata:/var/lib/postgresql/data'
+
+  redis:
+    container_name: birr-core-redis
+    restart: unless-stopped
+    image: redis:alpine
+    ports:
+    - '6379:6379'
+    volumes:
+    - 'birr-core-vol-redis:/var/lib/redis'
+
+  # Development Tools
+
+  bull-monitor:
+    image: ejhayes/nodejs-bull-monitor:latest
+    ports:
+      - 8090:3000
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      BULL_WATCH_QUEUE_PREFIXES: bull
+      PORT: 3000
+      UI: bull-master
+    depends_on:
+      - redis
+
+volumes:
+  birr-core-vol-mongo:
+  birr-core-vol-pgdata:
+  birr-core-vol-redis:
